@@ -1,18 +1,15 @@
-import express, { Request, Response } from "express";
+import express from "express";
 import http from "http";
-import cors from "cors";
-import compression from "compression";
-import morgan from "morgan";
-import cookieParser from "cookie-parser";
 import bodyParser from "body-parser";
-import connectDB from "./config/db";
-import router from "./routes";
+import cookieParser from "cookie-parser";
+import compression from "compression";
+import cors from "cors";
 
-// rest obj
+import router from "./router";
+import mongoose from "mongoose";
+
 const app = express();
-const port = 5000;
 
-// middlewares
 app.use(
   cors({
     credentials: true,
@@ -23,16 +20,16 @@ app.use(compression());
 app.use(cookieParser());
 app.use(bodyParser.json());
 
-app.get("/", (req: Request, res: Response) => {
-  res.send("test");
-});
-
-// database connection
-connectDB();
-
 const server = http.createServer(app);
-server.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
+
+server.listen(8080, () => {
+  console.log("Server running on http://localhost:8080/");
 });
 
-app.use("/", router);
+const MONGO_URL = "mongodb://127.0.0.1:27017/crud"; // DB URI
+
+mongoose.Promise = Promise;
+mongoose.connect(MONGO_URL);
+mongoose.connection.on("error", (error: Error) => console.log(error));
+
+app.use("/", router());
