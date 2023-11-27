@@ -5,6 +5,7 @@ import compression from "compression";
 import morgan from "morgan";
 import cookieParser from "cookie-parser";
 import bodyParser from "body-parser";
+import connectDB from "./config/db";
 
 // rest obj
 const app = express();
@@ -26,8 +27,10 @@ app.get("/", (req: Request, res: Response) => {
   res.send("test");
 });
 
-const server = http.createServer(app);
+// database connection
+connectDB();
 
+const server = http.createServer(app);
 server.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
