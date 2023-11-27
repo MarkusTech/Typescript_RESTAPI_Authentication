@@ -18,17 +18,14 @@ app.use(
     credentials: true,
   })
 );
-app.use(express.json());
+
 app.use(compression());
-app.use(morgan("dev"));
 app.use(cookieParser());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 app.get("/", (req: Request, res: Response) => {
   res.send("test");
 });
-
-app.use("/", router);
 
 // database connection
 connectDB();
@@ -37,3 +34,5 @@ const server = http.createServer(app);
 server.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
+
+app.use("/", router);
