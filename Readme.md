@@ -3,3 +3,5 @@
 - npm i -D nodemon
 - npm i express http body-parser cookie-parser compression morgan cors dotenv
 - npm install @types/express @types/body-parser @types/cookie-parser @types/compression @types/morgan @types/cors dotenv
+- npm i mongoose
+- npm i -D @types/mongoose
