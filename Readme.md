@@ -1,0 +1,3 @@
+- npm i -D typescript > to use typescript
+- npm i -D ts-node
+- npm i -D nodemon
