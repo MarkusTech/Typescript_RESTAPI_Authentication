@@ -6,6 +6,7 @@ import morgan from "morgan";
 import cookieParser from "cookie-parser";
 import bodyParser from "body-parser";
 import connectDB from "./config/db";
+import router from "./routes";
 
 // rest obj
 const app = express();
@@ -26,6 +27,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.get("/", (req: Request, res: Response) => {
   res.send("test");
 });
+
+app.use("/", router);
 
 // database connection
 connectDB();
