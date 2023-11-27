@@ -17,11 +17,6 @@ Features:
 
 **Node version 14.x**
 
-### Cloning the repository
-
-```shell
-```
-
 ### Install packages
 
 ```shell
