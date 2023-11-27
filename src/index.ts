@@ -1,18 +1,14 @@
-import express from "express";
+import express, { Request, Response } from "express";
 import http from "http";
 import cors from "cors";
 import compression from "compression";
 import morgan from "morgan";
 import cookieParser from "cookie-parser";
 import bodyParser from "body-parser";
-import dotenv from "dotenv";
-import { Request, Response } from "express";
 
-// dotenv config
-dotenv.config();
-const port = process.env.PORT;
 // rest obj
 const app = express();
+const port = 5000;
 
 // middlewares
 app.use(
